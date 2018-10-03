@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MyNote</title>
+
+		<script>
+			function getNote(){
+				if(localStorage.getItem('note')){
+					var note = localStorage.getItem('note');
+				}else{
+					var note = 'Click to edit note';
+				}
+
+				document.getElementById('note').innerHTML = note;
+			}
+
+			function saveNote(id){
+				var note = document.getElementById('note').innerHTML;
+				localStorage.setItem('note', note);
+			}
+
+			function clearNote(){
+				//localStorage.clear();			Clears all items in localStorage
+				clear: localStorage.removeItem('note');
+			}
+		</script>
+
+		<style>
+			body{
+				background:#efefef;
+			}
+
+			header{
+				font-family:helvetica;
+				background:#33cc33;
+				padding:1px 0px 1px 25px;
+				margin-bottom:10px;
+				text-align:center;
+			}
+
+			#container{
+				padding:10px;
+				font-size:20px;
+				width:30%;
+				margin:50px auto;
+				text-align:center;
+				background:#fefe63;
+			}
+
+			a{
+				text-decoration:none;
+				background:#33cc33;
+				color:black;
+				padding:10px;
+				border:1px solid black;
+				border-radius:8px;
+				font-family:arial;
+				font-weight:bold;
+			}
+
+			footer{
+				height:40px;
+				padding-top:5px;
+				padding-bottom:3px;
+				text-align:center;
+			}
+
+			footer p{
+				background:#ccc;
+				width:20%;
+				margin:30px auto;
+				font-family:tahoma;
+				font-size:15px;
+				padding:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>MyNote</h1>
+		</header>
+
+		<section id="container">
+			<div id="note" contenteditable="true" onkeyup="saveNote(this.id)"></div>
+		</section>
+
+		<footer>
+			<div>
+				<a href="" onclick="clearNote();" class="clear">Clear Note</a>
+			</div>
+			<p>MyNote &copy; Josh McIntyre 2018</p>
+		</footer>
+
+		<script>getNote()</script>
+	</body>
+</html>
